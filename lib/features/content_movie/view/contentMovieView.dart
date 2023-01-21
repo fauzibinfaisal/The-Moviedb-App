@@ -12,8 +12,6 @@ import 'package:the_moviedb_app/values/color.dart';
 import 'package:the_moviedb_app/values/string.dart';
 import 'package:the_moviedb_app/values/urls.dart';
 
-import '../../../routes/router.dart';
-
 class ContentMovieView extends StatelessWidget {
   final ContentMovieController
   _controller =
@@ -37,8 +35,8 @@ class ContentMovieView extends StatelessWidget {
   Widget _buildBody() {
     return BodyBuilder(
       apiRequestStatus: _controller.apiRequestStatus.value,
-      child: _body(),
       reload: () => _controller.getDataMovie(),
+      child: _body(),
     );
   }
 
@@ -437,9 +435,9 @@ class ContentMovieView extends StatelessWidget {
             physics: ClampingScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            itemCount: _controller.movieUpcomingData.value?.results?.length ?? 0,
+            itemCount: _controller.moviePopularData.value?.results?.length ?? 0,
             itemBuilder: (BuildContext context, int index) {
-              var dataView = _controller.movieUpcomingData.value.results[index];
+              var dataView = _controller.moviePopularData.value.results[index];
               bool show = true;
               return Visibility(
                   visible: show,
@@ -534,7 +532,5 @@ class ContentMovieView extends StatelessWidget {
       ],
     );
   }
-
-
 
 }

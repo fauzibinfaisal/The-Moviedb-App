@@ -13,29 +13,53 @@ class MovieUpcomingModel {
     required this.page,
     required this.results,
     required this.totalPages,
+    required this.totalResults,
   });
 
   int page;
   List<Result> results;
   int totalPages;
+  int totalResults;
 
   factory MovieUpcomingModel.fromJson(Map<String, dynamic> json) => MovieUpcomingModel(
     page: json["page"],
     results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
     totalPages: json["total_pages"],
+    totalResults: json["total_results"],
   );
 
   Map<String, dynamic> toJson() => {
     "page": page,
     "results": List<dynamic>.from(results.map((x) => x.toJson())),
     "total_pages": totalPages,
+    "total_results": totalResults,
+  };
+}
+
+class Dates {
+  Dates({
+    required this.maximum,
+    required this.minimum,
+  });
+
+  DateTime maximum;
+  DateTime minimum;
+
+  factory Dates.fromJson(Map<String, dynamic> json) => Dates(
+    maximum: DateTime.parse(json["maximum"]),
+    minimum: DateTime.parse(json["minimum"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "maximum": "${maximum.year.toString().padLeft(4, '0')}-${maximum.month.toString().padLeft(2, '0')}-${maximum.day.toString().padLeft(2, '0')}",
+    "minimum": "${minimum.year.toString().padLeft(4, '0')}-${minimum.month.toString().padLeft(2, '0')}-${minimum.day.toString().padLeft(2, '0')}",
   };
 }
 
 class Result {
   Result({
     required this.adult,
-    this.backdropPath,
+    required this.backdropPath,
     required this.genreIds,
     required this.id,
     required this.originalLanguage,
@@ -51,7 +75,7 @@ class Result {
   });
 
   bool adult;
-  String? backdropPath;
+  String backdropPath;
   List<int> genreIds;
   int id;
   OriginalLanguage originalLanguage;
@@ -100,12 +124,12 @@ class Result {
   };
 }
 
-enum OriginalLanguage { EN, ES, KO, AR }
+enum OriginalLanguage { EN, KO, AR, JA }
 
 final originalLanguageValues = EnumValues({
   "ar": OriginalLanguage.AR,
   "en": OriginalLanguage.EN,
-  "es": OriginalLanguage.ES,
+  "ja": OriginalLanguage.JA,
   "ko": OriginalLanguage.KO
 });
 

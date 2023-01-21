@@ -21,7 +21,8 @@ class ContentMovieController extends GetxController {
   var movieUpcomingData = MovieUpcomingModel(
       page: 0,
       results: [],
-      totalPages: 0).obs;
+      totalPages: 0,
+      totalResults: 0).obs;
   var moviePopularData = MoviePopularModel(
       page: 0,
       results: [],

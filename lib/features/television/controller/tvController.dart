@@ -2,7 +2,6 @@
 import 'package:get/get.dart';
 import 'package:the_moviedb_app/features/television/model/tvOnAirModel.dart';
 import 'package:the_moviedb_app/features/television/model/tvPopularModel.dart';
-import 'package:the_moviedb_app/routes/router.dart';
 import 'package:the_moviedb_app/utilities/apiHandler.dart';
 import 'package:the_moviedb_app/utilities/apiRequestStatus.dart';
 import 'package:the_moviedb_app/utilities/function.dart';
@@ -25,7 +24,7 @@ class TvController extends GetxController {
 
   @override
   void onInit() {
-    getDataMovie();
+    getDataTV();
     super.onInit();
   }
 
@@ -34,7 +33,7 @@ class TvController extends GetxController {
     super.onClose();
   }
 
-  getDataMovie() async{
+  getDataTV() async{
     setApiRequestStatus(APIRequestStatus.loading);
     try {
       TvOnAirModel tvOnAirModel = await ApiHandler.getTvOnAir();
@@ -65,10 +64,6 @@ class TvController extends GetxController {
 
   void setPopular(data) {
     tvPopularModel.value = data;
-  }
-
-  gotoDetailMovie(String id){
-    MyRouter.pushPageArguments("detailMovie", MovieDetailArguments(id));
   }
 }
 

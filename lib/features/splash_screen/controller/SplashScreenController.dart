@@ -24,14 +24,6 @@ class SplashScreenController extends GetxController {
   }
 
   changeScreen() async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // String sessionName = prefs.getString(Str.sessionUserId) ?? 'null';
-    // if (sessionName != "null") {
-    //   Get.offNamed('/main');
-    // } else {
-    //   Get.offNamed('/login');
-    // }
     MyRouter.pushPageReplacement("mainPage");
-    print("masukkk");
   }
 }

@@ -13,7 +13,6 @@ class ApiHandler {
 
   static Future<MovieNowPlayingModel> getMovieNowPlaying() async {
     var urlString = "${Url.urlGetMovieNowPlaying}?api_key=$API_KEY";
-    print(urlString);
     var url = Uri.parse(urlString);
     final response = await http.get(
       url,
@@ -22,10 +21,8 @@ class ApiHandler {
     MovieNowPlayingModel dataJson;
     if (response.statusCode == 200){
       final dataResponse = jsonDecode(response.body);
-      print('response: $dataResponse');
       dataJson = MovieNowPlayingModel.fromJson(dataResponse);
     } else {
-      print ('Error ${response.statusCode}');
       throw ('Error ${response.statusCode}');
     }
     return dataJson;
@@ -33,7 +30,6 @@ class ApiHandler {
 
   static Future<MovieUpcomingModel> getMovieUpcoming() async {
     var urlString = "${Url.urlGetMovieUpcoming}?api_key=$API_KEY";
-    print(urlString);
     var url = Uri.parse(urlString);
     final response = await http.get(
       url,
@@ -42,10 +38,8 @@ class ApiHandler {
     MovieUpcomingModel dataJson;
     if (response.statusCode == 200){
       final dataResponse = jsonDecode(response.body);
-      print('response: $dataResponse');
       dataJson = MovieUpcomingModel.fromJson(dataResponse);
     } else {
-      print ('Error ${response.statusCode}');
       throw ('Error ${response.statusCode}');
     }
     return dataJson;
@@ -53,7 +47,6 @@ class ApiHandler {
 
   static Future<MoviePopularModel> getMoviePopular() async {
     var urlString = "${Url.urlGetMoviePopular}?api_key=$API_KEY";
-    print(urlString);
     var url = Uri.parse(urlString);
     final response = await http.get(
       url,
@@ -62,10 +55,8 @@ class ApiHandler {
     MoviePopularModel dataJson;
     if (response.statusCode == 200){
       final dataResponse = jsonDecode(response.body);
-      print('response: $dataResponse');
       dataJson = MoviePopularModel.fromJson(dataResponse);
     } else {
-      print ('Error ${response.statusCode}');
       throw ('Error ${response.statusCode}');
     }
     return dataJson;
@@ -73,7 +64,6 @@ class ApiHandler {
 
   static Future<TvOnAirModel> getTvOnAir() async {
     var urlString = "${Url.urlGetTVOnTheAir}?api_key=$API_KEY";
-    print(urlString);
     var url = Uri.parse(urlString);
     final response = await http.get(
       url,
@@ -82,10 +72,8 @@ class ApiHandler {
     TvOnAirModel dataJson;
     if (response.statusCode == 200){
       final dataResponse = jsonDecode(response.body);
-      print('response: $dataResponse');
       dataJson = TvOnAirModel.fromJson(dataResponse);
     } else {
-      print ('Error ${response.statusCode}');
       throw ('Error ${response.statusCode}');
     }
     return dataJson;
@@ -94,7 +82,6 @@ class ApiHandler {
 
   static Future<TvPopularModel> getTvPopular() async {
     var urlString = "${Url.urlGetTVPopular}?api_key=$API_KEY";
-    print(urlString);
     var url = Uri.parse(urlString);
     final response = await http.get(
       url,
@@ -103,10 +90,8 @@ class ApiHandler {
     TvPopularModel dataJson;
     if (response.statusCode == 200){
       final dataResponse = jsonDecode(response.body);
-      print('response: $dataResponse');
       dataJson = TvPopularModel.fromJson(dataResponse);
     } else {
-      print ('Error ${response.statusCode}');
       throw ('Error ${response.statusCode}');
     }
     return dataJson;

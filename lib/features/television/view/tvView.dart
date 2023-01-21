@@ -32,14 +32,14 @@ class TvView extends StatelessWidget {
   Widget _buildBody() {
     return BodyBuilder(
       apiRequestStatus: _controller.apiRequestStatus.value,
+      reload: () => _controller.getDataTV(),
       child: _body(),
-      reload: () => _controller.getDataMovie(),
     );
   }
 
   Widget _body() {
     return RefreshIndicator(
-      onRefresh: () => _controller.getDataMovie(),
+      onRefresh: () => _controller.getDataTV(),
       child: SafeArea(
         child: ListView(
           shrinkWrap: true,
