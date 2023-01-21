@@ -27,9 +27,10 @@ class Str {
   static String upcoming = "Upcoming";
   static String popular = "Popular";
   static String patientNameHereStr = "John Hannah";
-
   static String contentMovieTitle = "Content Movie";
   static String name = "Watchman 01";
+  static String movieDetailStr = "Movie Detail";
+  static String review ="Review";
 
   //String Image
   static String imgLogo = "assets/images/img-logo.png";
@@ -50,5 +51,4 @@ class Str {
   static String sessionImage = "image";
   static String sessionTokenType = "token_type";
   static String sessionRefreshToken = "refresh_token";
-
 }

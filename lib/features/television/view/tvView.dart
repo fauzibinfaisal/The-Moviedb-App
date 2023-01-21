@@ -199,7 +199,7 @@ class TvView extends StatelessWidget {
                                   ClipRRect(
                                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                                     child: CachedNetworkImage(
-                                      imageUrl: "${Url.baseImage}/${dataView.posterPath}",
+                                      imageUrl: "${Url.baseImage92}/${dataView.posterPath}",
                                       placeholder: (context, url) => Center(
                                         child: Wrap(
                                           children: [
@@ -329,7 +329,7 @@ class TvView extends StatelessWidget {
                                   ClipRRect(
                                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                                     child: CachedNetworkImage(
-                                      imageUrl: "${Url.baseImage}/${dataView.posterPath}",
+                                      imageUrl: "${Url.baseImage92}/${dataView.posterPath}",
                                       placeholder: (context, url) => Center(
                                         child: Wrap(
                                           children: [

@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:the_moviedb_app/features/content_movie/model/movieNowPlayingModel.dart';
 import 'package:the_moviedb_app/features/content_movie/model/moviePopularModel.dart';
 import 'package:the_moviedb_app/features/content_movie/model/movieUpcomingModel.dart';
+import 'package:the_moviedb_app/features/movie_detail/model/movieDetailModel.dart';
+import 'package:the_moviedb_app/features/movie_detail/model/movieReviewModel.dart';
 import 'package:the_moviedb_app/features/television/model/tvOnAirModel.dart';
 import 'package:the_moviedb_app/features/television/model/tvPopularModel.dart';
 import 'package:the_moviedb_app/values/secret.dart';
@@ -11,6 +13,7 @@ import 'package:the_moviedb_app/values/urls.dart';
 
 class ApiHandler {
 
+  //MOVIE NOW PLAYING LIST
   static Future<MovieNowPlayingModel> getMovieNowPlaying() async {
     var urlString = "${Url.urlGetMovieNowPlaying}?api_key=$API_KEY";
     var url = Uri.parse(urlString);
@@ -28,6 +31,7 @@ class ApiHandler {
     return dataJson;
   }
 
+  //MOVIE UPCOMING LIST
   static Future<MovieUpcomingModel> getMovieUpcoming() async {
     var urlString = "${Url.urlGetMovieUpcoming}?api_key=$API_KEY";
     var url = Uri.parse(urlString);
@@ -45,6 +49,7 @@ class ApiHandler {
     return dataJson;
   }
 
+  //MOVIE POPULAR LIST
   static Future<MoviePopularModel> getMoviePopular() async {
     var urlString = "${Url.urlGetMoviePopular}?api_key=$API_KEY";
     var url = Uri.parse(urlString);
@@ -62,6 +67,7 @@ class ApiHandler {
     return dataJson;
   }
 
+  //TV ON THE AIR LIST
   static Future<TvOnAirModel> getTvOnAir() async {
     var urlString = "${Url.urlGetTVOnTheAir}?api_key=$API_KEY";
     var url = Uri.parse(urlString);
@@ -79,7 +85,7 @@ class ApiHandler {
     return dataJson;
   }
 
-
+  //TV POPULAR LIST
   static Future<TvPopularModel> getTvPopular() async {
     var urlString = "${Url.urlGetTVPopular}?api_key=$API_KEY";
     var url = Uri.parse(urlString);
@@ -96,22 +102,46 @@ class ApiHandler {
     }
     return dataJson;
   }
-  //
-  // static Future<DetailDoctorModel> getDoctorDetail(String idDoctor) async {
-  //   var url = Uri.parse("${Url.urlDoctorDetail}$idDoctor");
-  //   final response = await http.get(
-  //     url,
-  //     headers: {"Accept": "application/json"},
-  //   );
-  //   DetailDoctorModel dataJson;
-  //   if (response.statusCode == 200){
-  //     final dataResponse = jsonDecode(response.body);
-  //     print('response: $dataResponse');
-  //     dataJson = DetailDoctorModel.fromJson(dataResponse);
-  //   } else {
-  //     // print(response.body);
-  //     throw ('Error ${response.statusCode}');
-  //   }
-  //   return dataJson;
-  // }
+
+  //MOVIE DETAIL
+  static Future<MovieDetailModel> getMovieDetail(String id) async {
+    var urlString = "${Url.urlGetMovieDetail}/$id?api_key=$API_KEY";
+    print(urlString);
+    var url = Uri.parse(urlString);
+    final response = await http.get(
+      url,
+      headers: {"Accept": "application/json"},
+    );
+    MovieDetailModel dataJson;
+    if (response.statusCode == 200){
+      final dataResponse = jsonDecode(response.body);
+      print('response: $dataResponse');
+      dataJson = MovieDetailModel.fromJson(dataResponse);
+    } else {
+      throw ('Error ${response.statusCode}');
+    }
+    return dataJson;
+  }
+
+  //MOVIE REVIEW LIST
+  static Future<MovieReviewModel> getMovieReview(String id) async {
+    var urlString = "${Url.urlGetMovieDetail}/$id/reviews?api_key=$API_KEY";
+    print(urlString);
+    var url = Uri.parse(urlString);
+    final response = await http.get(
+      url,
+      headers: {"Accept": "application/json"},
+    );
+    MovieReviewModel dataJson;
+    if (response.statusCode == 200){
+      final dataResponse = jsonDecode(response.body);
+      print('massuukkk01');
+      dataJson = MovieReviewModel.fromJson(dataResponse);
+      print('massuukkk02');
+
+    } else {
+      dataJson = MovieReviewModel(page: 0, results: [], totalPages: 0, totalResults: 0);
+    }
+    return dataJson;
+  }
 }

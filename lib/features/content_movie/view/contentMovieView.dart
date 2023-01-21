@@ -8,6 +8,7 @@ import 'package:the_moviedb_app/components/bodyBuilder.dart';
 import 'package:the_moviedb_app/components/loadingWidget.dart';
 import 'package:the_moviedb_app/features/content_movie/controller/contentMovieController.dart';
 import 'package:the_moviedb_app/features/main/controller/mainController.dart';
+import 'package:the_moviedb_app/routes/router.dart';
 import 'package:the_moviedb_app/values/color.dart';
 import 'package:the_moviedb_app/values/string.dart';
 import 'package:the_moviedb_app/values/urls.dart';
@@ -183,7 +184,7 @@ class ContentMovieView extends StatelessWidget {
                   visible: show,
                   child: InkWell(
                     onTap: () {
-                      // MyRouter.pushPageArguments("detailDoctorPage", DetailDoctorArguments(dataView.id.toString()));
+                      MyRouter.pushPageArguments("movieDetail", MovieDetailArguments(dataView.id.toString()));
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -219,7 +220,7 @@ class ContentMovieView extends StatelessWidget {
                                   ClipRRect(
                                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                                     child: CachedNetworkImage(
-                                      imageUrl: "${Url.baseImage}/${dataView.posterPath}",
+                                      imageUrl: "${Url.baseImage92}/${dataView.posterPath}",
                                       placeholder: (context, url) => Center(
                                         child: Wrap(
                                           children: [
@@ -313,7 +314,7 @@ class ContentMovieView extends StatelessWidget {
                   visible: show,
                   child: InkWell(
                     onTap: () {
-                      // MyRouter.pushPageArguments("detailDoctorPage", DetailDoctorArguments(dataView.id.toString()));
+                      MyRouter.pushPageArguments("movieDetail", MovieDetailArguments(dataView.id.toString()));
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -349,7 +350,7 @@ class ContentMovieView extends StatelessWidget {
                                   ClipRRect(
                                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                                     child: CachedNetworkImage(
-                                      imageUrl: "${Url.baseImage}/${dataView.posterPath}",
+                                      imageUrl: "${Url.baseImage92}/${dataView.posterPath}",
                                       placeholder: (context, url) => Center(
                                         child: Wrap(
                                           children: [
@@ -443,7 +444,7 @@ class ContentMovieView extends StatelessWidget {
                   visible: show,
                   child: InkWell(
                     onTap: () {
-                      // MyRouter.pushPageArguments("detailDoctorPage", DetailDoctorArguments(dataView.id.toString()));
+                      MyRouter.pushPageArguments("movieDetail", MovieDetailArguments(dataView.id.toString()));
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -479,7 +480,7 @@ class ContentMovieView extends StatelessWidget {
                                   ClipRRect(
                                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                                     child: CachedNetworkImage(
-                                      imageUrl: "${Url.baseImage}/${dataView.posterPath}",
+                                      imageUrl: "${Url.baseImage92}/${dataView.posterPath}",
                                       placeholder: (context, url) => Center(
                                         child: Wrap(
                                           children: [
