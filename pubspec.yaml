@@ -39,7 +39,6 @@ dependencies:
   cool_alert:
   fluttertoast:
   cached_network_image:
-  flutter_restart:
   intl: ^0.18.0
 
 dev_dependencies:
