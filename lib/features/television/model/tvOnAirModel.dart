@@ -23,14 +23,14 @@ class TvOnAirModel {
 
   factory TvOnAirModel.fromJson(Map<String, dynamic> json) => TvOnAirModel(
     page: json["page"],
-    results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+    results: json["results"] == null ? [] : List<Result>.from(json["results"]!.map((x) => Result.fromJson(x))),
     totalPages: json["total_pages"],
     totalResults: json["total_results"],
   );
 
   Map<String, dynamic> toJson() => {
     "page": page,
-    "results": List<dynamic>.from(results.map((x) => x.toJson())),
+    "results": results == null ? [] : List<dynamic>.from(results!.map((x) => x.toJson())),
     "total_pages": totalPages,
     "total_results": totalResults,
   };
@@ -39,41 +39,41 @@ class TvOnAirModel {
 class Result {
   Result({
     this.backdropPath,
-    required this.firstAirDate,
-    required this.genreIds,
-    required this.id,
+    this.firstAirDate,
+    this.genreIds,
+    this.id,
     required this.name,
-    required this.originCountry,
-    required this.originalLanguage,
-    required this.originalName,
+    this.originCountry,
+    this.originalLanguage,
+    this.originalName,
     required this.overview,
-    required this.popularity,
-    required this.posterPath,
-    required this.voteAverage,
-    required this.voteCount,
+    this.popularity,
+    this.posterPath,
+    this.voteAverage,
+    this.voteCount,
   });
 
   String? backdropPath;
-  String firstAirDate;
-  List<int> genreIds;
-  int id;
+  String? firstAirDate;
+  List<int>? genreIds;
+  int? id;
   String name;
-  List<String> originCountry;
-  String originalLanguage;
-  String originalName;
+  List<String>? originCountry;
+  String? originalLanguage;
+  String? originalName;
   String overview;
-  double popularity;
-  String posterPath;
-  double voteAverage;
-  int voteCount;
+  double? popularity;
+  String? posterPath;
+  double? voteAverage;
+  int? voteCount;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
     backdropPath: json["backdrop_path"],
     firstAirDate: json["first_air_date"],
-    genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
+    genreIds: json["genre_ids"] == null ? [] : List<int>.from(json["genre_ids"]!.map((x) => x)),
     id: json["id"],
     name: json["name"],
-    originCountry: List<String>.from(json["origin_country"].map((x) => x)),
+    originCountry: json["origin_country"] == null ? [] : List<String>.from(json["origin_country"]!.map((x) => x)),
     originalLanguage: json["original_language"],
     originalName: json["original_name"],
     overview: json["overview"],
@@ -86,10 +86,10 @@ class Result {
   Map<String, dynamic> toJson() => {
     "backdrop_path": backdropPath,
     "first_air_date": firstAirDate,
-    "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
+    "genre_ids": genreIds == null ? [] : List<dynamic>.from(genreIds!.map((x) => x)),
     "id": id,
     "name": name,
-    "origin_country": List<dynamic>.from(originCountry.map((x) => x)),
+    "origin_country": originCountry == null ? [] : List<dynamic>.from(originCountry!.map((x) => x)),
     "original_language": originalLanguage,
     "original_name": originalName,
     "overview": overview,
