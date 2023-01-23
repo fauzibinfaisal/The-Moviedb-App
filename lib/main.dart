@@ -1,6 +1,7 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:the_moviedb_app/theme/themeService.dart';
 import 'package:the_moviedb_app/theme/themes.dart';
+import 'package:the_moviedb_app/utilities/apiHandler.dart';
 import 'package:the_moviedb_app/values/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,9 +9,15 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_moviedb_app/routes/route.dart';
+import 'package:http/http.dart' as http;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  //Dependency Injection
+  ApiHandler apiService = ApiHandler(http.Client());
+  Get.put(apiService);
+
   await GetStorage.init();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])

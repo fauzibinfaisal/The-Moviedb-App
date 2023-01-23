@@ -36,9 +36,9 @@ class TvController extends GetxController {
   getDataTV() async{
     setApiRequestStatus(APIRequestStatus.loading);
     try {
-      TvOnAirModel tvOnAirModel = await ApiHandler.getTvOnAir();
+      TvOnAirModel tvOnAirModel = await Get.find<ApiHandler>().getTvOnAir();
       setOnAir(tvOnAirModel);
-      TvPopularModel tvPopularModel = await ApiHandler.getTvPopular();
+      TvPopularModel tvPopularModel = await Get.find<ApiHandler>().getTvPopular();
       setPopular(tvPopularModel);
       setApiRequestStatus(APIRequestStatus.loaded);
     } catch (e) {

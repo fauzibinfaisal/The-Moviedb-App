@@ -43,11 +43,11 @@ class ContentMovieController extends GetxController {
   getDataMovie() async{
     setApiRequestStatus(APIRequestStatus.loading);
     try {
-      MovieNowPlayingModel movieNowPlayingModel = await ApiHandler.getMovieNowPlaying();
+      MovieNowPlayingModel movieNowPlayingModel = await Get.find<ApiHandler>().getMovieNowPlaying();
       setNowPlaying(movieNowPlayingModel);
-      MovieUpcomingModel movieUpcomingModel = await ApiHandler.getMovieUpcoming();
+      MovieUpcomingModel movieUpcomingModel = await Get.find<ApiHandler>().getMovieUpcoming();
       setUpcoming(movieUpcomingModel);
-      MoviePopularModel moviePopularModel = await ApiHandler.getMoviePopular();
+      MoviePopularModel moviePopularModel = await Get.find<ApiHandler>().getMoviePopular();
       setPopular(moviePopularModel);
       setApiRequestStatus(APIRequestStatus.loaded);
     } catch (e) {

@@ -12,17 +12,20 @@ import 'package:the_moviedb_app/values/secret.dart';
 import 'package:the_moviedb_app/values/urls.dart';
 
 class ApiHandler {
+  final http.Client _http;
+
+  ApiHandler(this._http);
 
   //MOVIE NOW PLAYING LIST
-  static Future<MovieNowPlayingModel> getMovieNowPlaying() async {
+  Future<MovieNowPlayingModel> getMovieNowPlaying() async {
     var urlString = "${Url.urlGetMovieNowPlaying}?api_key=$API_KEY";
     var url = Uri.parse(urlString);
-    final response = await http.get(
+    final response = await _http.get(
       url,
       headers: {"Accept": "application/json"},
     );
     MovieNowPlayingModel dataJson;
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       final dataResponse = jsonDecode(response.body);
       dataJson = MovieNowPlayingModel.fromJson(dataResponse);
     } else {
@@ -32,15 +35,15 @@ class ApiHandler {
   }
 
   //MOVIE UPCOMING LIST
-  static Future<MovieUpcomingModel> getMovieUpcoming() async {
+  Future<MovieUpcomingModel> getMovieUpcoming() async {
     var urlString = "${Url.urlGetMovieUpcoming}?api_key=$API_KEY";
     var url = Uri.parse(urlString);
-    final response = await http.get(
+    final response = await _http.get(
       url,
       headers: {"Accept": "application/json"},
     );
     MovieUpcomingModel dataJson;
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       final dataResponse = jsonDecode(response.body);
       dataJson = MovieUpcomingModel.fromJson(dataResponse);
     } else {
@@ -50,15 +53,15 @@ class ApiHandler {
   }
 
   //MOVIE POPULAR LIST
-  static Future<MoviePopularModel> getMoviePopular() async {
+  Future<MoviePopularModel> getMoviePopular() async {
     var urlString = "${Url.urlGetMoviePopular}?api_key=$API_KEY";
     var url = Uri.parse(urlString);
-    final response = await http.get(
+    final response = await _http.get(
       url,
       headers: {"Accept": "application/json"},
     );
     MoviePopularModel dataJson;
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       final dataResponse = jsonDecode(response.body);
       dataJson = MoviePopularModel.fromJson(dataResponse);
     } else {
@@ -68,15 +71,15 @@ class ApiHandler {
   }
 
   //TV ON THE AIR LIST
-  static Future<TvOnAirModel> getTvOnAir() async {
+  Future<TvOnAirModel> getTvOnAir() async {
     var urlString = "${Url.urlGetTVOnTheAir}?api_key=$API_KEY";
     var url = Uri.parse(urlString);
-    final response = await http.get(
+    final response = await _http.get(
       url,
       headers: {"Accept": "application/json"},
     );
     TvOnAirModel dataJson;
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       final dataResponse = jsonDecode(response.body);
       dataJson = TvOnAirModel.fromJson(dataResponse);
     } else {
@@ -86,15 +89,15 @@ class ApiHandler {
   }
 
   //TV POPULAR LIST
-  static Future<TvPopularModel> getTvPopular() async {
+  Future<TvPopularModel> getTvPopular() async {
     var urlString = "${Url.urlGetTVPopular}?api_key=$API_KEY";
     var url = Uri.parse(urlString);
-    final response = await http.get(
+    final response = await _http.get(
       url,
       headers: {"Accept": "application/json"},
     );
     TvPopularModel dataJson;
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       final dataResponse = jsonDecode(response.body);
       dataJson = TvPopularModel.fromJson(dataResponse);
     } else {
@@ -104,18 +107,17 @@ class ApiHandler {
   }
 
   //MOVIE DETAIL
-  static Future<MovieDetailModel> getMovieDetail(String id) async {
+  Future<MovieDetailModel> getMovieDetail(String id) async {
     var urlString = "${Url.urlGetMovieDetail}/$id?api_key=$API_KEY";
     print(urlString);
     var url = Uri.parse(urlString);
-    final response = await http.get(
+    final response = await _http.get(
       url,
       headers: {"Accept": "application/json"},
     );
     MovieDetailModel dataJson;
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       final dataResponse = jsonDecode(response.body);
-      print('response: $dataResponse');
       dataJson = MovieDetailModel.fromJson(dataResponse);
     } else {
       throw ('Error ${response.statusCode}');
@@ -124,23 +126,21 @@ class ApiHandler {
   }
 
   //MOVIE REVIEW LIST
-  static Future<MovieReviewModel> getMovieReview(String id) async {
+  Future<MovieReviewModel> getMovieReview(String id) async {
     var urlString = "${Url.urlGetMovieDetail}/$id/reviews?api_key=$API_KEY";
     print(urlString);
     var url = Uri.parse(urlString);
-    final response = await http.get(
+    final response = await _http.get(
       url,
       headers: {"Accept": "application/json"},
     );
     MovieReviewModel dataJson;
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       final dataResponse = jsonDecode(response.body);
-      print('massuukkk01');
       dataJson = MovieReviewModel.fromJson(dataResponse);
-      print('massuukkk02');
-
     } else {
-      dataJson = MovieReviewModel(page: 0, results: [], totalPages: 0, totalResults: 0);
+      dataJson = MovieReviewModel(
+          page: 0, results: [], totalPages: 0, totalResults: 0);
     }
     return dataJson;
   }

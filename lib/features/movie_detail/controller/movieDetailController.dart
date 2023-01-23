@@ -32,9 +32,9 @@ class MovieDetailController extends GetxController{
   void getData() async{
     setApiRequestStatus(APIRequestStatus.loading);
     try {
-      MovieDetailModel movieDetailModel = await ApiHandler.getMovieDetail(id);
+      MovieDetailModel movieDetailModel = await Get.find<ApiHandler>().getMovieDetail(id);
       setMovieData(movieDetailModel);
-      MovieReviewModel movieReviewModel = await ApiHandler.getMovieReview(id);
+      MovieReviewModel movieReviewModel = await Get.find<ApiHandler>().getMovieReview(id);
       setRatingData(movieReviewModel);
       print("movieReviewModel.length ${movieReviewModel.results.length}");
       setApiRequestStatus(APIRequestStatus.loaded);
