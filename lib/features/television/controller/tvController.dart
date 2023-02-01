@@ -1,5 +1,6 @@
 
 import 'package:get/get.dart';
+import 'package:the_moviedb_app/features/reusable_widget/movieTileWidget.dart';
 import 'package:the_moviedb_app/features/television/model/tvOnAirModel.dart';
 import 'package:the_moviedb_app/features/television/model/tvPopularModel.dart';
 import 'package:the_moviedb_app/utilities/apiHandler.dart';
@@ -11,16 +12,8 @@ class TvController extends GetxController {
   var y = (Get.height - (Get.height * 0.20)).obs;
   var indexBottomNavigation = 0.obs;
   var apiRequestStatus = APIRequestStatus.unInitialized.obs;
-  var tvOnAirModel = TvOnAirModel(
-      page: 0,
-      results: [],
-      totalPages: 0,
-      totalResults: 0).obs;
-  var tvPopularModel = TvPopularModel(
-      page: 0,
-      results: [],
-      totalPages: 0,
-      totalResults: 0).obs;
+  var tvOnAirModel = <MovieTileModel>[].obs;
+  var tvPopularModel = <MovieTileModel>[].obs;
 
   @override
   void onInit() {
@@ -58,12 +51,28 @@ class TvController extends GetxController {
     apiRequestStatus.value = value;
   }
 
-  void setOnAir(data) {
-    tvOnAirModel.value = data;
+  void setOnAir(TvOnAirModel data) {
+    List<MovieTileModel> viewModels = data.results.map((tv) {
+      return MovieTileModel(
+        id: tv.id,
+        title: tv.name,
+        posterPath: tv.posterPath ?? "",
+        overview: tv.overview,
+      );
+    }).toList();
+    tvOnAirModel.value = viewModels;
   }
 
-  void setPopular(data) {
-    tvPopularModel.value = data;
+  void setPopular(TvPopularModel data) {
+    List<MovieTileModel> viewModels = data.results.map((tv) {
+      return MovieTileModel(
+        id: tv.id,
+        title: tv.name,
+        posterPath: tv.posterPath ?? "",
+        overview: tv.overview,
+      );
+    }).toList();
+    tvPopularModel.value = viewModels;
   }
 }
 

@@ -97,7 +97,7 @@ class ProfileView extends StatelessWidget {
         ),
         Padding(padding: EdgeInsets.symmetric(horizontal: 10), child: Center(
           child: Text(
-            Str.patientNameHereStr,
+            Str.exName,
             style: GoogleFonts.roboto(
                 color: Colors.black,
                 fontSize: 24.0.sp,

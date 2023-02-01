@@ -41,7 +41,7 @@ class Result {
     this.backdropPath,
     this.firstAirDate,
     this.genreIds,
-    this.id,
+    required this.id,
     required this.name,
     this.originCountry,
     this.originalLanguage,
@@ -56,7 +56,7 @@ class Result {
   String? backdropPath;
   String? firstAirDate;
   List<int>? genreIds;
-  int? id;
+  int id;
   String name;
   List<String>? originCountry;
   String? originalLanguage;

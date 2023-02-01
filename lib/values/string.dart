@@ -26,7 +26,8 @@ class Str {
   static String nowPlaying = "Now Playing";
   static String upcoming = "Upcoming";
   static String popular = "Popular";
-  static String patientNameHereStr = "John Hannah";
+  static String onTheAir = "TV On the Air";
+  static String exName = "John Hannah";
   static String contentMovieTitle = "Content Movie";
   static String name = "Watchman 01";
   static String movieDetailStr = "Movie Detail";
