@@ -7,7 +7,7 @@ import 'package:the_moviedb_app/utilities/function.dart';
 
 class MovieDetailController extends GetxController{
   var apiRequestStatus = APIRequestStatus.unInitialized.obs;
-  var movieDetailModel = MovieDetailModel().obs;
+  var movieDetailModel = MovieDetailModel(title: '').obs;
   var movieReviewModel = MovieReviewModel(
       page: 0,
       results: [],
@@ -34,6 +34,10 @@ class MovieDetailController extends GetxController{
     try {
       MovieDetailModel movieDetailModel = await Get.find<ApiHandler>().getMovieDetail(id);
       setMovieData(movieDetailModel);
+      print("movieReviewModel title: ${movieDetailModel.title}");
+      print("movieReviewModel overview: ${movieDetailModel.overview}");
+      print("movieReviewModel posterPath: ${movieDetailModel.posterPath}");
+
       MovieReviewModel movieReviewModel = await Get.find<ApiHandler>().getMovieReview(id);
       setRatingData(movieReviewModel);
       print("movieReviewModel.length ${movieReviewModel.results.length}");

@@ -1,8 +1,8 @@
-
 import 'package:get/get.dart';
 import 'package:the_moviedb_app/features/content_movie/model/movieNowPlayingModel.dart';
 import 'package:the_moviedb_app/features/content_movie/model/moviePopularModel.dart';
 import 'package:the_moviedb_app/features/content_movie/model/movieUpcomingModel.dart';
+import 'package:the_moviedb_app/features/reusable_widget/movieTileWidget.dart';
 import 'package:the_moviedb_app/routes/router.dart';
 import 'package:the_moviedb_app/utilities/apiHandler.dart';
 import 'package:the_moviedb_app/utilities/apiRequestStatus.dart';
@@ -13,21 +13,9 @@ class ContentMovieController extends GetxController {
   var y = (Get.height - (Get.height * 0.20)).obs;
   var indexBottomNavigation = 0.obs;
   var apiRequestStatus = APIRequestStatus.unInitialized.obs;
-  var movieNowPlayingData = MovieNowPlayingModel(
-      page: 0,
-      results: [],
-      totalPages: 0,
-      totalResults: 0).obs;
-  var movieUpcomingData = MovieUpcomingModel(
-      page: 0,
-      results: [],
-      totalPages: 0,
-      totalResults: 0).obs;
-  var moviePopularData = MoviePopularModel(
-      page: 0,
-      results: [],
-      totalPages: 0,
-      totalResults: 0).obs;
+  var movieNowPlayingData = <MovieTileModel>[].obs;
+  var movieUpcomingData = <MovieTileModel>[].obs;
+  var moviePopularData = <MovieTileModel>[].obs;
 
   @override
   void onInit() {
@@ -40,14 +28,17 @@ class ContentMovieController extends GetxController {
     super.onClose();
   }
 
-  getDataMovie() async{
+  getDataMovie() async {
     setApiRequestStatus(APIRequestStatus.loading);
     try {
-      MovieNowPlayingModel movieNowPlayingModel = await Get.find<ApiHandler>().getMovieNowPlaying();
+      MovieNowPlayingModel movieNowPlayingModel =
+          await Get.find<ApiHandler>().getMovieNowPlaying();
       setNowPlaying(movieNowPlayingModel);
-      MovieUpcomingModel movieUpcomingModel = await Get.find<ApiHandler>().getMovieUpcoming();
+      MovieUpcomingModel movieUpcomingModel =
+          await Get.find<ApiHandler>().getMovieUpcoming();
       setUpcoming(movieUpcomingModel);
-      MoviePopularModel moviePopularModel = await Get.find<ApiHandler>().getMoviePopular();
+      MoviePopularModel moviePopularModel =
+          await Get.find<ApiHandler>().getMoviePopular();
       setPopular(moviePopularModel);
       setApiRequestStatus(APIRequestStatus.loaded);
     } catch (e) {
@@ -67,19 +58,43 @@ class ContentMovieController extends GetxController {
     apiRequestStatus.value = value;
   }
 
-  void setNowPlaying(data) {
-    movieNowPlayingData.value = data;
+  void setNowPlaying(MovieNowPlayingModel data) {
+    List<MovieTileModel> viewModels = data.results.map((movie) {
+      return MovieTileModel(
+        id: movie.id,
+        title: movie.title,
+        posterPath: movie.posterPath ?? "",
+        overview: movie.overview,
+      );
+    }).toList();
+    movieNowPlayingData.value = viewModels;
   }
 
-  void setUpcoming(data) {
-    movieUpcomingData.value = data;
+  void setUpcoming(MovieUpcomingModel data) {
+    List<MovieTileModel> viewModels = data.results.map((movie) {
+      return MovieTileModel(
+        id: movie.id,
+        title: movie.title,
+        posterPath: movie.posterPath ?? "",
+        overview: movie.overview,
+      );
+    }).toList();
+    movieUpcomingData.value = viewModels;
   }
 
-  void setPopular(data) {
-    moviePopularData.value = data;
+  void setPopular(MoviePopularModel data) {
+    List<MovieTileModel> viewModels = data.results.map((movie) {
+      return MovieTileModel(
+        id: movie.id,
+        title: movie.title,
+        posterPath: movie.posterPath ?? "",
+        overview: movie.overview,
+      );
+    }).toList();
+    moviePopularData.value = viewModels;
   }
 
-  gotoDetailMovie(String id){
+  gotoDetailMovie(String id) {
     MyRouter.pushPageArguments("detailMovie", MovieDetailArguments(id));
   }
 }

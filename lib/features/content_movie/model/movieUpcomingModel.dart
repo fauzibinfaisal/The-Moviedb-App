@@ -30,7 +30,7 @@ class MovieUpcomingModel {
 
   Map<String, dynamic> toJson() => {
     "page": page,
-    "results": results == null ? [] : List<dynamic>.from(results!.map((x) => x.toJson())),
+    "results": results == null ? [] : List<dynamic>.from(results.map((x) => x.toJson())),
     "total_pages": totalPages,
     "total_results": totalResults,
   };
@@ -61,7 +61,7 @@ class Result {
     this.adult,
     this.backdropPath,
     this.genreIds,
-    this.id,
+    required this.id,
     this.originalLanguage,
     this.originalTitle,
     required this.overview,
@@ -77,7 +77,7 @@ class Result {
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
-  int? id;
+  int id;
   OriginalLanguage? originalLanguage;
   String? originalTitle;
   String overview;

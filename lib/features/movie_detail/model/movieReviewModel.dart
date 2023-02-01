@@ -41,19 +41,19 @@ class Result {
     required this.author,
     required this.authorDetails,
     required this.content,
-    required this.createdAt,
+    this.createdAt,
     required this.id,
-    required this.updatedAt,
-    required this.url,
+    this.updatedAt,
+    this.url,
   });
 
   String author;
   AuthorDetails authorDetails;
   String content;
-  DateTime createdAt;
+  DateTime? createdAt;
   String id;
-  DateTime updatedAt;
-  String url;
+  DateTime? updatedAt;
+  String? url;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
     author: json["author"],
@@ -69,9 +69,9 @@ class Result {
     "author": author,
     "author_details": authorDetails.toJson(),
     "content": content,
-    "created_at": createdAt.toIso8601String(),
+    "created_at": createdAt?.toIso8601String(),
     "id": id,
-    "updated_at": updatedAt.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
     "url": url,
   };
 }
@@ -81,13 +81,13 @@ class AuthorDetails {
     required this.name,
     required this.username,
     this.avatarPath,
-    required this.rating,
+    this.rating,
   });
 
   String name;
   String username;
   String? avatarPath;
-  double rating;
+  double? rating;
 
   factory AuthorDetails.fromJson(Map<String, dynamic> json) => AuthorDetails(
     name: json["name"],

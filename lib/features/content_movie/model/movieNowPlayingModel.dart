@@ -58,36 +58,36 @@ class Dates {
 
 class Result {
   Result({
-    required this.adult,
-    required this.backdropPath,
-    required this.genreIds,
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
     required this.id,
-    required this.originalLanguage,
-    required this.originalTitle,
+    this.originalLanguage,
+    this.originalTitle,
     required this.overview,
-    required this.popularity,
-    required this.posterPath,
-    required this.releaseDate,
+    this.popularity,
+    this.posterPath,
+    this.releaseDate,
     required this.title,
     required this.video,
     required this.voteAverage,
     required this.voteCount,
   });
 
-  bool adult;
-  String backdropPath;
-  List<int> genreIds;
+  bool? adult;
+  String? backdropPath;
+  List<int>? genreIds;
   int id;
-  OriginalLanguage originalLanguage;
-  String originalTitle;
+  OriginalLanguage? originalLanguage;
+  String? originalTitle;
   String overview;
-  double popularity;
-  String posterPath;
-  DateTime releaseDate;
+  double? popularity;
+  String? posterPath;
+  DateTime? releaseDate;
   String title;
-  bool video;
-  double voteAverage;
-  int voteCount;
+  bool? video;
+  double? voteAverage;
+  int? voteCount;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
     adult: json["adult"],
@@ -109,14 +109,14 @@ class Result {
   Map<String, dynamic> toJson() => {
     "adult": adult,
     "backdrop_path": backdropPath,
-    "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
+    "genre_ids": genreIds == null ? [] : List<dynamic>.from(genreIds!.map((x) => x)),
     "id": id,
     "original_language": originalLanguageValues.reverse[originalLanguage],
     "original_title": originalTitle,
     "overview": overview,
     "popularity": popularity,
     "poster_path": posterPath,
-    "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+    "release_date": "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
     "title": title,
     "video": video,
     "vote_average": voteAverage,

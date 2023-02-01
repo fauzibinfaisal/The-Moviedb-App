@@ -30,7 +30,7 @@ class TvOnAirModel {
 
   Map<String, dynamic> toJson() => {
     "page": page,
-    "results": results == null ? [] : List<dynamic>.from(results!.map((x) => x.toJson())),
+    "results": results == null ? [] : List<dynamic>.from(results.map((x) => x.toJson())),
     "total_pages": totalPages,
     "total_results": totalResults,
   };

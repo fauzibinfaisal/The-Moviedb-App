@@ -51,7 +51,7 @@ class MovieDetailView extends StatelessWidget {
     return BodyBuilder(
       apiRequestStatus: _controller.apiRequestStatus.value,
       colorLoading: Col.primaryColor,
-      reload: () => _controller.getData(),
+      reload: () => _controller.getData,
       child: _body(),
     );
   }
@@ -260,6 +260,12 @@ class MovieDetailView extends StatelessWidget {
                                       fontSize: 12.0.sp,
                                       color: Colors.black),
                                 ),
+                                dataView.authorDetails.rating == null ?
+                                Text(
+                                  "Rating : - ",
+                                  style: GoogleFonts.roboto(
+                                      color: Col.primaryColor, fontSize: 12.0.sp),
+                                ):
                                 Text(
                                   "Rating : ${dataView.authorDetails.rating}",
                                   style: GoogleFonts.roboto(
